@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="/src/style.css" />
   </head>
   <body>
-    <div class="app-container">
+    <section class="app-container">
+      
       <aside class="sidebar">
-        <div class="sidebar-header">
+        <header class="sidebar-header">
           <h1>Aluno Online</h1>
-        </div>
+        </header>
+
         <nav class="sidebar-nav">
           <ul>
             <li><a href="#" class="active">Dashboard</a></li>
@@ -24,17 +26,22 @@
           </ul>
         </nav>
       </aside>
+
       <main class="main-content">
+        
         <header class="topbar">
-          <div class="user-greeting">
+          <section class="user-greeting">
             <span>Olá, Aluno!</span>
             <p class="welcome-message">Bem-vindo ao portal do aluno</p>
-          </div>
-          <div class="user-avatar">
+          </section>
+
+          <figure class="user-avatar">
             <img src="/avatar.svg" alt="Avatar do usuário" />
-          </div>
+          </figure>
         </header>
+
         <section class="content-area">
+          
           <article class="card">
             <h2>Mural de Avisos</h2>
             <ul>
@@ -43,6 +50,7 @@
               <li>Boleto vencido!</li>
             </ul>
           </article>
+
           <article class="card">
             <h2>Calendário Acadêmico</h2>
             <ul>
@@ -51,6 +59,7 @@
               <li>25/05 - Simulado Enade</li>
             </ul>
           </article>
+
           <article class="card">
             <h2>Minhas Disciplinas</h2>
             <ul>
@@ -59,9 +68,12 @@
               <li>Algoritmos - AA1</li>
             </ul>
           </article>
+
         </section>
       </main>
-    </div>
+
+    </section>
+
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
