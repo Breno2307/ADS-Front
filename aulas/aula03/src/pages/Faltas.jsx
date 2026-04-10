@@ -1,13 +1,14 @@
 import Layout from "./Layout";
+import Tabela from "../components/Tabela";
 
 function Faltas() {
   return (
-    <>
-      <Layout>
-        <h2>Minhas faltas</h2>
-        <section></section>
-      </Layout>
-    </>
+    <Layout titulo="minhas faltas" subtitulo="historico de faltas por semestre">
+      <Tabela />
+      <Tabela />
+      <Tabela />
+    </Layout>
   );
 }
+
 export default Faltas;

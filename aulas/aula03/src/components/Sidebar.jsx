@@ -6,7 +6,7 @@ function Sidebar() {
     <aside>
       <header>
         <img src={logo} alt="logotipo" />
-        <h1>Aluno online</h1>
+        <h1>Aluno Online</h1>
       </header>
       <Menu />
     </aside>
