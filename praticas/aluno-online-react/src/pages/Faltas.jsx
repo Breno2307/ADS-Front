@@ -1,4 +1,6 @@
 import Layout from '../components/Layout'
+import Card from '../components/Card'
+import Table from '../components/Table'
 import './Faltas.css'
 
 function Faltas() {
@@ -6,64 +8,31 @@ function Faltas() {
     {
       nome: '2026.1',
       disciplinas: [
-        { nome: 'BI e Data Warehousing', faltas: 0, presenca: '100%' },
-        { nome: 'Construção de Frontend', faltas: 0, presenca: '100%' },
-        { nome: 'Manutenção de Software e Devops', faltas: 0, presenca: '100%' }
-      ]
-    },
-    {
-      nome: '2025.2',
-      disciplinas: [
-        { nome: 'Construção de Backend', faltas: 27, presenca: '87.5%' },
-        { nome: 'Estrutura de Dados', faltas: 9, presenca: '85%' },
-        { nome: 'Gerenciamento de Projetos', faltas: 10.5, presenca: '82.5%' }
-      ]
-    },
-    {
-      nome: '2025.1',
-      disciplinas: [
-        { nome: 'Algoritmos e Programação', faltas: 5, presenca: '92%' },
-        { nome: 'Banco de Dados', faltas: 2, presenca: '96%' }
+        { nome: 'Frontend', faltas: 0, presenca: '100%' }
       ]
     }
   ]
 
+  const columns = ['Disciplina', 'Faltas', 'Presença']
+
   return (
     <Layout>
-      <article className="faltas-container">
-        <header className="faltas-header">
-          <h1>Minhas Faltas</h1>
-          <h2>Histórico de Faltas por Semestre</h2>
-        </header>
-
-        {semestres.map((semestre) => (
-          <section key={semestre.nome} className="semestre-card">
-            <header className="semestre-header">
-              <h3>{semestre.nome}</h3>
-            </header>
-            <section className="table-container">
-              <table className="faltas-table">
-                <thead>
-                  <tr>
-                    <th>Disciplina</th>
-                    <th>Total de Faltas</th>
-                    <th>% de Presença</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {semestre.disciplinas.map((disciplina, index) => (
-                    <tr key={index}>
-                      <td>{disciplina.nome}</td>
-                      <td>{disciplina.faltas}</td>
-                      <td>{disciplina.presenca}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </section>
-          </section>
-        ))}
-      </article>
+      {semestres.map((s) => (
+        <Card key={s.nome} title={s.nome}>
+          <Table
+            className="faltas-table"
+            columns={columns}
+            data={s.disciplinas}
+            renderRow={(d) => (
+              <>
+                <td>{d.nome}</td>
+                <td>{d.faltas}</td>
+                <td>{d.presenca}</td>
+              </>
+            )}
+          />
+        </Card>
+      ))}
     </Layout>
   )
 }

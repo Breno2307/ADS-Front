@@ -1,15 +1,14 @@
 import './Menu.css'
 
-function Menu() {
+function Menu({ items }) {
   return (
     <nav className="menu">
       <ul>
-        <li><a href="/">Dashboard</a></li>
-        <li><a href="/notas">Notas</a></li>
-        <li><a href="/faltas">Faltas</a></li>
-        <li><a href="/boletos">Boletos</a></li>
-        <li><a href="/requerimentos">Requerimentos</a></li>
-        <li><a href="/login">Sair</a></li>
+        {items.map((item, index) => (
+          <li key={index}>
+            <a href={item.link}>{item.label}</a>
+          </li>
+        ))}
       </ul>
     </nav>
   )
