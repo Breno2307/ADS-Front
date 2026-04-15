@@ -7,7 +7,7 @@ function Layout({ children }) {
     <section className="app-container">
       <Sidebar />
       <main className="main-content">
-        <Topbar />
+        <Topbar nome="Breno" />
         <section className="content-area">
           {children}
         </section>
