@@ -1,15 +1,14 @@
-import './Sidebar.css'
-import Menu from './Menu'
+import "./Sidebar.css";
+import Menu from "./Menu";
 
 function Sidebar() {
   const menuItems = [
-    { label: 'Dashboard', link: '/' },
-    { label: 'Notas', link: '/notas' },
-    { label: 'Faltas', link: '/faltas' },
-    { label: 'Boletos', link: '/boletos' },
-    { label: 'Requerimentos', link: '/requerimentos' },
-    { label: 'Sair', link: '/login' }
-  ]
+    { label: "Dashboard", link: "/" },
+    { label: "Notas", link: "/notas" },
+    { label: "Faltas", link: "/faltas" },
+    { label: "Boletos", link: "/boletos" },
+    { label: "Requerimentos", link: "/requerimentos" },
+  ];
 
   return (
     <aside className="sidebar">
@@ -20,7 +19,7 @@ function Sidebar() {
 
       <Menu items={menuItems} />
     </aside>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;

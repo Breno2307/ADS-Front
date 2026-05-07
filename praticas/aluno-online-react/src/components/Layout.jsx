@@ -1,19 +1,24 @@
-import Sidebar from './Sidebar'
-import Topbar from './Topbar'
-import './Layout.css'
+import { Outlet } from "react-router";
 
-function Layout({ children }) {
+import Sidebar from "./Sidebar";
+import Topbar from "./Topbar";
+
+import "./Layout.css";
+
+function Layout() {
   return (
     <section className="app-container">
       <Sidebar />
+
       <main className="main-content">
         <Topbar nome="Breno" />
+
         <section className="content-area">
-          {children}
+          <Outlet />
         </section>
       </main>
     </section>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

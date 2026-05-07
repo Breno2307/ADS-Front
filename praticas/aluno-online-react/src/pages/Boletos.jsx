@@ -1,38 +1,57 @@
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import Table from '../components/Table'
-import './Boletos.css'
+import Card from "../components/Card";
+import Table from "../components/Table";
+
+import "./Boletos.css";
 
 function Boletos() {
   const boletos = [
-    { vencimento: '19/01/2026', valor: '500,00', situacao: 'Pago', situacaoClass: 'pago' },
-    { vencimento: '19/02/2026', valor: '500,00', situacao: 'Em atraso', situacaoClass: 'atraso' }
-  ]
+    {
+      vencimento: "19/01/2026",
+      valor: "500,00",
+      situacao: "Pago",
+      situacaoClass: "pago",
+    },
+    {
+      vencimento: "19/02/2026",
+      valor: "500,00",
+      situacao: "Em atraso",
+      situacaoClass: "atraso",
+    },
+  ];
 
-  const columns = ['Vencimento', 'Valor R$', 'Situação']
+  const columns = ["Vencimento", "Valor R$", "Situação"];
 
   return (
-    <Layout>
-      <Card title="Meus Boletos">
-        <Table
-          className="boletos-table"
-          columns={columns}
-          data={boletos}
-          renderRow={(b) => (
-            <>
-              <td>{b.vencimento}</td>
-              <td>{b.valor}</td>
-              <td>
-                <span className={`situacao-badge ${b.situacaoClass}`}>
-                  {b.situacao}
-                </span>
-              </td>
-            </>
-          )}
-        />
+    <article className="boletos-container">
+      <header className="boletos-header">
+        <h1>Meus Boletos</h1>
+        <h2>Histórico de Pagamentos</h2>
+      </header>
+
+      <Card title="Lista de Boletos">
+        <div className="table-container">
+          <Table
+            className="boletos-table"
+            columns={columns}
+            data={boletos}
+            renderRow={(boleto) => (
+              <>
+                <td>{boleto.vencimento}</td>
+                <td>{boleto.valor}</td>
+                <td>
+                  <span
+                    className={`situacao-badge ${boleto.situacaoClass}`}
+                  >
+                    {boleto.situacao}
+                  </span>
+                </td>
+              </>
+            )}
+          />
+        </div>
       </Card>
-    </Layout>
-  )
+    </article>
+  );
 }
 
-export default Boletos
+export default Boletos;

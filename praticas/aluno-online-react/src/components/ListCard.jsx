@@ -1,4 +1,4 @@
-import Card from './Card'
+import Card from "./Card";
 
 function ListCard({ title, items }) {
   return (
@@ -9,7 +9,7 @@ function ListCard({ title, items }) {
         ))}
       </ul>
     </Card>
-  )
+  );
 }
 
-export default ListCard
+export default ListCard;
