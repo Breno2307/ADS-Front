@@ -1,12 +1,14 @@
-import { useContext } from "react";
-
-import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router";
+import { useAuthContext } from "../contexts/AuthContext";
 
 function Login() {
-  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const { login } = useAuthContext();
 
   const handleEntrar = () => {
     login({ usuario: "Breno@gmail.com", senha: "tema o sangue antigo" });
+    navigate("/");
   };
 
   return (
