@@ -1,6 +1,6 @@
 import './Topbar.css'
 
-import { useAuth } from '../contexts/AuthContext'
+import useAuth from '../hooks/useAuth'
 
 function Topbar({
   mensagem = 'Bem-vindo ao portal do aluno',

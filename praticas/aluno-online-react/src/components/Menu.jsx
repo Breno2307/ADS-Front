@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from 'react-router'
 
 import './Menu.css'
 
-import { useAuth } from '../contexts/AuthContext'
+import useAuth from '../hooks/useAuth'
 
 function Menu({ items }) {
   const navigate = useNavigate()
