@@ -1,37 +1,55 @@
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import Table from '../components/Table'
-import './Requerimentos.css'
+import Card from "../components/Card";
+import Table from "../components/Table";
+
+import "./Requerimentos.css";
 
 function Requerimentos() {
-  const dados = [
-    { tipo: 'Revisão', data: '2025', situacao: 'Deferido', situacaoClass: 'deferido' }
-  ]
+  const requerimentos = [
+    {
+      tipo: "Revisão de Menção",
+      data: "15/12/2025",
+      situacao: "Indeferido",
+      situacaoClass: "indeferido",
+    },
+  ];
 
-  const columns = ['Tipo', 'Data', 'Situação']
+  const columns = [
+    "Tipo de Requerimento",
+    "Data de Solicitação",
+    "Situação",
+  ];
 
   return (
-    <Layout>
-      <Card title="Requerimentos">
-        <Table
-          className="requerimentos-table"
-          columns={columns}
-          data={dados}
-          renderRow={(r) => (
-            <>
-              <td>{r.tipo}</td>
-              <td>{r.data}</td>
-              <td>
-                <span className={`situacao-badge ${r.situacaoClass}`}>
-                  {r.situacao}
-                </span>
-              </td>
-            </>
-          )}
-        />
+    <article className="requerimentos-container">
+      <header className="requerimentos-header">
+        <h1>Meus Requerimentos</h1>
+        <h2>Faça solicitações online para a secretaria</h2>
+      </header>
+
+      <Card title="Histórico de Requerimentos">
+        <div className="table-container">
+          <Table
+            className="requerimentos-table"
+            columns={columns}
+            data={requerimentos}
+            renderRow={(req) => (
+              <>
+                <td>{req.tipo}</td>
+                <td>{req.data}</td>
+                <td>
+                  <span
+                    className={`situacao-badge ${req.situacaoClass}`}
+                  >
+                    {req.situacao}
+                  </span>
+                </td>
+              </>
+            )}
+          />
+        </div>
       </Card>
-    </Layout>
-  )
+    </article>
+  );
 }
 
-export default Requerimentos
+export default Requerimentos;

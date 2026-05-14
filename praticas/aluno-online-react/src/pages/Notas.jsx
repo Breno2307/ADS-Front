@@ -1,42 +1,62 @@
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import Table from '../components/Table'
-import './Notas.css'
+import Card from "../components/Card";
+import Table from "../components/Table";
+
+import "./Notas.css";
 
 function Notas() {
   const semestres = [
     {
-      nome: '2026.1',
+      nome: "2026.1",
       disciplinas: [
-        { nome: 'Frontend', a1: '', a2: '', a3: '', mencao: 'SR' }
-      ]
-    }
-  ]
+        {
+          nome: "BI e Data Warehousing",
+          a1: "",
+          a2: "",
+          a3: "",
+          mencao: "SR",
+        },
+        {
+          nome: "Construção de Frontend",
+          a1: "",
+          a2: "",
+          a3: "",
+          mencao: "SR",
+        },
+      ],
+    },
+  ];
 
-  const columns = ['Disciplina', 'P1', 'P2', 'P3', 'Menção']
+  const columns = ["Disciplina", "A1", "A2", "A3", "Menção"];
 
   return (
-    <Layout>
-      {semestres.map((s) => (
-        <Card key={s.nome} title={s.nome}>
-          <Table
-            className="notas-table"
-            columns={columns}
-            data={s.disciplinas}
-            renderRow={(d) => (
-              <>
-                <td>{d.nome}</td>
-                <td>{d.a1}</td>
-                <td>{d.a2}</td>
-                <td>{d.a3}</td>
-                <td>{d.mencao}</td>
-              </>
-            )}
-          />
+    <article className="notas-container">
+      <header className="notas-header">
+        <h1>Minhas Notas</h1>
+        <h2>Histórico de Notas por Semestre</h2>
+      </header>
+
+      {semestres.map((semestre) => (
+        <Card key={semestre.nome} title={semestre.nome}>
+          <div className="table-container">
+            <Table
+              className="notas-table"
+              columns={columns}
+              data={semestre.disciplinas}
+              renderRow={(disciplina) => (
+                <>
+                  <td>{disciplina.nome}</td>
+                  <td>{disciplina.a1}</td>
+                  <td>{disciplina.a2}</td>
+                  <td>{disciplina.a3}</td>
+                  <td>{disciplina.mencao}</td>
+                </>
+              )}
+            />
+          </div>
         </Card>
       ))}
-    </Layout>
-  )
+    </article>
+  );
 }
 
-export default Notas
+export default Notas;

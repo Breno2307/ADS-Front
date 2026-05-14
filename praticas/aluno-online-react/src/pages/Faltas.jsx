@@ -1,40 +1,51 @@
-import Layout from '../components/Layout'
-import Card from '../components/Card'
-import Table from '../components/Table'
-import './Faltas.css'
+import Card from "../components/Card";
+import Table from "../components/Table";
+
+import "./Faltas.css";
 
 function Faltas() {
   const semestres = [
     {
-      nome: '2026.1',
+      nome: "2026.1",
       disciplinas: [
-        { nome: 'Frontend', faltas: 0, presenca: '100%' }
-      ]
-    }
-  ]
+        {
+          nome: "Construção de Frontend",
+          faltas: 0,
+          presenca: "100%",
+        },
+      ],
+    },
+  ];
 
-  const columns = ['Disciplina', 'Faltas', 'Presença']
+  const columns = ["Disciplina", "Faltas", "Presença"];
 
   return (
-    <Layout>
-      {semestres.map((s) => (
-        <Card key={s.nome} title={s.nome}>
-          <Table
-            className="faltas-table"
-            columns={columns}
-            data={s.disciplinas}
-            renderRow={(d) => (
-              <>
-                <td>{d.nome}</td>
-                <td>{d.faltas}</td>
-                <td>{d.presenca}</td>
-              </>
-            )}
-          />
+    <article className="faltas-container">
+      <header className="faltas-header">
+        <h1>Minhas Faltas</h1>
+        <h2>Histórico de Faltas por Semestre</h2>
+      </header>
+
+      {semestres.map((semestre) => (
+        <Card key={semestre.nome} title={semestre.nome}>
+          <div className="table-container">
+            <Table
+              className="faltas-table"
+              columns={columns}
+              data={semestre.disciplinas}
+              renderRow={(disciplina) => (
+                <>
+                  <td>{disciplina.nome}</td>
+                  <td>{disciplina.faltas}</td>
+                  <td>{disciplina.presenca}</td>
+                </>
+              )}
+            />
+          </div>
         </Card>
       ))}
-    </Layout>
-  )
+    </article>
+  );
 }
 
-export default Faltas
+export default Faltas;

@@ -1,6 +1,6 @@
-import './Card.css'
+import "./Card.css";
 
-function Card({ title, children, className = '' }) {
+function Card({ title, children, className = "" }) {
   return (
     <article className={`card ${className}`}>
       {title && (
@@ -8,11 +8,12 @@ function Card({ title, children, className = '' }) {
           <h2>{title}</h2>
         </header>
       )}
+
       <section className="card-content">
         {children}
       </section>
     </article>
-  )
+  );
 }
 
-export default Card
+export default Card;

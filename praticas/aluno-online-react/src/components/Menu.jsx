@@ -1,4 +1,5 @@
-import './Menu.css'
+import { NavLink } from "react-router";
+import "./Menu.css";
 
 function Menu({ items }) {
   return (
@@ -6,12 +7,19 @@ function Menu({ items }) {
       <ul>
         {items.map((item, index) => (
           <li key={index}>
-            <a href={item.link}>{item.label}</a>
+            <NavLink
+              to={item.link}
+              className={({ isActive }) =>
+                isActive ? "menu-link active" : "menu-link"
+              }
+            >
+              {item.label}
+            </NavLink>
           </li>
         ))}
       </ul>
     </nav>
-  )
+  );
 }
 
-export default Menu
+export default Menu;
