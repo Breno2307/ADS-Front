@@ -1,9 +1,9 @@
-import { Outlet } from "react-router";
+import { Outlet } from 'react-router'
 
-import Sidebar from "./Sidebar";
-import Topbar from "./Topbar";
+import Sidebar from './Sidebar'
+import Topbar from './Topbar'
 
-import "./Layout.css";
+import './Layout.css'
 
 function Layout() {
   return (
@@ -11,14 +11,14 @@ function Layout() {
       <Sidebar />
 
       <main className="main-content">
-        <Topbar nome="Breno" />
+        <Topbar />
 
         <section className="content-area">
           <Outlet />
         </section>
       </main>
     </section>
-  );
+  )
 }
 
-export default Layout;
+export default Layout
