@@ -30,9 +30,11 @@ function Perfil() {
     nascimento: {
       validate: {
         dataMinima: (value) =>
-          Date.parse(value) > new Date(1899, 11, 31).getTime() || "Data inferior",
+          Date.parse(`${value} 00:00:00 UTC`) >= new Date("01/01/1900 00:00:00 UTC").getTime() ||
+          "Data inferior",
         dataMaxima: (value) =>
-          Date.parse(value) < new Date().getTime() || "Data superior",
+          Date.parse(`${value} 00:00:00 UTC`) < new Date().getTime() ||
+          "Data superior",
       },
     },
     telefone: {
@@ -60,12 +62,12 @@ function Perfil() {
         </div>
         <div>
           <label htmlFor="nascimento">data de nascimento</label>
-          <input type="date" id="nascimento" {...register("nascimento")} />
+          <input type="date" id="nascimento" {...register("nascimento",regras.nascimento)} />
           {errors?.nascimento && <p>{errors.nascimento.message}</p>}
         </div>
         <div>
           <label htmlFor="telefone">telefone</label>
-          <input type="tel" id="telefone" {...register("telefone")} />
+          <input type="tel" id="telefone" {...register("telefone",regras.telefone)} />
           {errors?.telefone && <p>{errors.telefone.message}</p>}
         </div>
         <button type="submit">Salvar</button>
