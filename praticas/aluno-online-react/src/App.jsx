@@ -11,6 +11,8 @@ import Boletos from './pages/Boletos'
 import Requerimentos from './pages/Requerimentos'
 import Login from './pages/Login'
 
+import RequerimentoForm from './forms/RequerimentoForm'
+
 function App() {
   const { autenticado } = useAuth()
 
@@ -18,7 +20,10 @@ function App() {
     <Routes>
       {!autenticado ? (
         <>
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/login"
+            element={<Login />}
+          />
 
           <Route
             path="*"
@@ -27,8 +32,14 @@ function App() {
         </>
       ) : (
         <>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
+          <Route
+            path="/"
+            element={<Layout />}
+          >
+            <Route
+              index
+              element={<Dashboard />}
+            />
 
             <Route
               path="notas"
@@ -45,10 +56,17 @@ function App() {
               element={<Boletos />}
             />
 
-            <Route
-              path="requerimentos"
-              element={<Requerimentos />}
-            />
+            <Route path="requerimentos">
+              <Route
+                index
+                element={<Requerimentos />}
+              />
+
+              <Route
+                path="novo"
+                element={<RequerimentoForm />}
+              />
+            </Route>
           </Route>
 
           <Route
