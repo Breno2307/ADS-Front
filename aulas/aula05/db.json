@@ -1,0 +1,7 @@
+{
+  "produtos": [],
+  "clientes": [],
+  "Fornecedores": [],
+  "pedidos": [],
+  "$schema": "./node_modules/json-server/schema.json"
+}
