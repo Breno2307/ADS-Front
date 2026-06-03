@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "json-server db.json --port 5173"
+    "test": "json-server db.json"
   },
   "keywords": [],
   "author": "",
