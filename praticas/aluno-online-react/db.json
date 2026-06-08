@@ -1,0 +1,32 @@
+{
+  "requerimentos": [
+    {
+      "id": "1",
+      "tipo": "Revisão de Menção",
+      "descricao": "Solicito revisão da menção final.",
+      "data": "2026-05-26"
+    },
+    {
+      "tipo": "Mudança de Turno",
+      "descricao": "fvkjbvdfçsavkç",
+      "data": "08/06/2026",
+      "situacao": "Em analise",
+      "id": "zZJmkBLqQMQ"
+    },
+    {
+      "tipo": "Renovação de Matrícula",
+      "descricao": "1234567890",
+      "data": "26/09/2025",
+      "situacao": "Em analise",
+      "id": "Dxrk4CyrF_4"
+    },
+    {
+      "tipo": "Dispensa de Disciplina",
+      "descricao": "22222222222222222222222",
+      "data": "08/06/2026",
+      "situacao": "Em analise",
+      "id": "RKNnLWXrH1k"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

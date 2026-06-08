@@ -1,51 +1,37 @@
-import Card from "../components/Card";
-import Table from "../components/Table";
-
-import "./Faltas.css";
+import Tabela from '../components/Tabela'
 
 function Faltas() {
-  const semestres = [
-    {
-      nome: "2026.1",
-      disciplinas: [
-        {
-          nome: "Construção de Frontend",
-          faltas: 0,
-          presenca: "100%",
-        },
-      ],
-    },
-  ];
+  const semestre20261 = [
+    { disciplina: 'BI e Data Warehousing', faltas: 0, presenca: '100%' },
+    { disciplina: 'Construção de Frontend', faltas: 0, presenca: '100%' },
+    { disciplina: 'Manutenção de Software e Devops', faltas: 0, presenca: '100%' }
+  ]
 
-  const columns = ["Disciplina", "Faltas", "Presença"];
+  const semestre20252 = [
+    { disciplina: 'Construção de Backend', faltas: 27, presenca: '87.5%' },
+    { disciplina: 'Estrutura de Dados', faltas: 9, presenca: '85%' },
+    { disciplina: 'Gerenciamento de Projetos', faltas: 10.5, presenca: '82.5%' }
+  ]
+
+  const semestre20251 = [
+    { disciplina: 'Algoritmos e Programação', faltas: 5, presenca: '92%' },
+    { disciplina: 'Banco de Dados', faltas: 2, presenca: '96%' }
+  ]
+
+  const colunas = ['Disciplina', 'Total de Faltas', '% de Presença']
 
   return (
-    <article className="faltas-container">
-      <header className="faltas-header">
+    <>
+      <header className="page-header">
         <h1>Minhas Faltas</h1>
         <h2>Histórico de Faltas por Semestre</h2>
       </header>
-
-      {semestres.map((semestre) => (
-        <Card key={semestre.nome} title={semestre.nome}>
-          <div className="table-container">
-            <Table
-              className="faltas-table"
-              columns={columns}
-              data={semestre.disciplinas}
-              renderRow={(disciplina) => (
-                <>
-                  <td>{disciplina.nome}</td>
-                  <td>{disciplina.faltas}</td>
-                  <td>{disciplina.presenca}</td>
-                </>
-              )}
-            />
-          </div>
-        </Card>
-      ))}
-    </article>
-  );
+      
+      <Tabela titulo="2026.1" colunas={colunas} dados={semestre20261} />
+      <Tabela titulo="2025.2" colunas={colunas} dados={semestre20252} />
+      <Tabela titulo="2025.1" colunas={colunas} dados={semestre20251} />
+    </>
+  )
 }
 
-export default Faltas;
+export default Faltas

@@ -1,62 +1,37 @@
-import Card from "../components/Card";
-import Table from "../components/Table";
-
-import "./Notas.css";
+import Tabela from '../components/Tabela'
 
 function Notas() {
-  const semestres = [
-    {
-      nome: "2026.1",
-      disciplinas: [
-        {
-          nome: "BI e Data Warehousing",
-          a1: "",
-          a2: "",
-          a3: "",
-          mencao: "SR",
-        },
-        {
-          nome: "Construção de Frontend",
-          a1: "",
-          a2: "",
-          a3: "",
-          mencao: "SR",
-        },
-      ],
-    },
-  ];
+  const semestre20261 = [
+    { disciplina: 'BI e Data Warehousing', a1: '', a2: '', a3: '', mencao: 'SR' },
+    { disciplina: 'Construção de Frontend', a1: '', a2: '', a3: '', mencao: 'SR' },
+    { disciplina: 'Manutenção de Software e Devops', a1: '', a2: '', a3: '', mencao: 'SR' }
+  ]
 
-  const columns = ["Disciplina", "A1", "A2", "A3", "Menção"];
+  const semestre20252 = [
+    { disciplina: 'Construção de Backend', a1: '5.4', a2: '6.2', a3: '', mencao: 'MM' },
+    { disciplina: 'Estrutura de Dados', a1: '6.3', a2: '6.1', a3: '', mencao: 'MM' },
+    { disciplina: 'Gerenciamento de Projetos', a1: '7.4', a2: '7.1', a3: '', mencao: 'MS' }
+  ]
+
+  const semestre20251 = [
+    { disciplina: 'Algoritmos e Programação', a1: '7.0', a2: '8.5', a3: '', mencao: 'MS' },
+    { disciplina: 'Banco de Dados', a1: '8.0', a2: '8.0', a3: '', mencao: 'MS' }
+  ]
+
+  const colunas = ['Disciplina', 'A1', 'A2', 'A3', 'Menção']
 
   return (
-    <article className="notas-container">
-      <header className="notas-header">
+    <>
+      <header className="page-header">
         <h1>Minhas Notas</h1>
         <h2>Histórico de Notas por Semestre</h2>
       </header>
-
-      {semestres.map((semestre) => (
-        <Card key={semestre.nome} title={semestre.nome}>
-          <div className="table-container">
-            <Table
-              className="notas-table"
-              columns={columns}
-              data={semestre.disciplinas}
-              renderRow={(disciplina) => (
-                <>
-                  <td>{disciplina.nome}</td>
-                  <td>{disciplina.a1}</td>
-                  <td>{disciplina.a2}</td>
-                  <td>{disciplina.a3}</td>
-                  <td>{disciplina.mencao}</td>
-                </>
-              )}
-            />
-          </div>
-        </Card>
-      ))}
-    </article>
-  );
+      
+      <Tabela titulo="2026.1" colunas={colunas} dados={semestre20261} />
+      <Tabela titulo="2025.2" colunas={colunas} dados={semestre20252} />
+      <Tabela titulo="2025.1" colunas={colunas} dados={semestre20251} />
+    </>
+  )
 }
 
-export default Notas;
+export default Notas

@@ -8,7 +8,7 @@
   margin-bottom: 0.5rem;
 }
 
-.menu-link {
+.menu a {
   display: block;
   padding: 0.75rem 1rem;
   text-decoration: none;
@@ -17,27 +17,6 @@
   transition: background-color 0.3s;
 }
 
-.menu-link:hover {
-  background-color: #e9e9e9;
-}
-
-.menu-link.active {
-  background-color: #dcdcdc;
-  font-weight: 600;
-}
-
-.menu-logout {
-  width: 100%;
-  border: none;
-  background-color: transparent;
-  text-align: left;
-  padding: 0.75rem 1rem;
-  border-radius: 6px;
-  cursor: pointer;
-  color: #303030;
-  font-size: 1rem;
-}
-
-.menu-logout:hover {
+.menu a:hover {
   background-color: #e9e9e9;
 }

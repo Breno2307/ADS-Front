@@ -1,87 +1,71 @@
-import { Link } from 'react-router'
-
-import Card from '../components/Card'
-
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import Tabela from '../components/Tabela'
+import { listarRequerimentos } from '../services/requerimentoService'
 import './Requerimentos.css'
 
 function Requerimentos() {
-  const requerimentos = [
-    {
-      tipo: 'Revisão de Menção',
-      data: '15/12/2025',
-      situacao: 'Indeferido',
-      situacaoClass: 'indeferido',
-    },
+  const [requerimentos, setRequerimentos] = useState([])
+  const [carregando, setCarregando] = useState(true)
+  const [erro, setErro] = useState('')
 
-    {
-      tipo: 'Dispensa de Disciplina',
-      data: '12/06/2025',
-      situacao: 'Indeferido',
-      situacaoClass: 'indeferido',
-    },
+  useEffect(() => {
+    let paginaAtiva = true
 
-    {
-      tipo: 'Trancamento de Matrícula',
-      data: '05/01/2024',
-      situacao: 'Deferido',
-      situacaoClass: 'deferido',
-    },
-  ]
+    async function carregarRequerimentos() {
+      try {
+        const dados = await listarRequerimentos()
+
+        if (paginaAtiva) {
+          setRequerimentos(dados)
+          setErro('')
+        }
+      } catch (error) {
+        if (paginaAtiva) {
+          setErro(error.message)
+        }
+      } finally {
+        if (paginaAtiva) {
+          setCarregando(false)
+        }
+      }
+    }
+
+    carregarRequerimentos()
+
+    return () => {
+      paginaAtiva = false
+    }
+  }, [])
+
+  const colunas = ['Tipo de Requerimento', 'Data de Solicitacao', 'Situacao']
+  const dadosTabela = requerimentos.map(({ tipo, data, situacao }) => ({
+    tipo,
+    data,
+    situacao,
+  }))
 
   return (
-    <article className="requerimentos-container">
-      <header className="requerimentos-header">
+    <>
+      <header className="page-header">
         <h1>Meus Requerimentos</h1>
-
-        <h2>
-          Faça solicitações online para a
-          secretaria
-        </h2>
-
-        <Link
-          to="/requerimentos/novo"
-          className="novo-requerimento"
-        >
-          ➕ Novo Requerimento
-        </Link>
+        <h2>Faca solicitacoes online para a secretaria</h2>
       </header>
 
-      <Card>
-        <section className="table-container">
-          <table className="requerimentos-table">
-            <thead>
-              <tr>
-                <th>Tipo</th>
+      <section className="requerimentos-actions">
+        <Link to="/requerimentos/novo" className="novo-requerimento-link">
+          + Novo Requerimento
+        </Link>
+      </section>
 
-                <th>Data</th>
+      {erro && <p className="requerimentos-alerta">{erro}</p>}
 
-                <th>Situação</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {requerimentos.map(
-                (req, index) => (
-                  <tr key={index}>
-                    <td>{req.tipo}</td>
-
-                    <td>{req.data}</td>
-
-                    <td>
-                      <span
-                        className={`situacao-badge ${req.situacaoClass}`}
-                      >
-                        {req.situacao}
-                      </span>
-                    </td>
-                  </tr>
-                ),
-              )}
-            </tbody>
-          </table>
-        </section>
-      </Card>
-    </article>
+      {carregando ? (
+        <p className="requerimentos-status">Carregando requerimentos...</p>
+      ) : (
+        <Tabela colunas={colunas} dados={dadosTabela} />
+      )}
+    </>
   )
 }
 

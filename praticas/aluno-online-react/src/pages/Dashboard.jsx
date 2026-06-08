@@ -1,33 +1,38 @@
-import ListCard from "../components/ListCard";
+import Card from '../components/Card'
 
 function Dashboard() {
-  const avisos = [
-    "Inscrição para o projeto de extensão",
-    "Eleição para representante de turma",
-  ];
-
-  const calendario = [
-    "23/02 - Início do período letivo 2026-1",
-    "25/04 - Prazo final para aplicação da P1",
-    "23/06 - Prazo final para aplicação da P2",
-    "04/07 - Fim do período letivo 2026-1",
-  ];
-
-  const disciplinas = [
-    "BI e Data Warehousing",
-    "Construção de Frontend",
-    "Manutenção de Software e Devops",
-  ];
-
   return (
     <>
-      <ListCard title="Mural de Avisos" items={avisos} />
+      <header className="page-header">
+        <h1>Dashboard</h1>
+        <h2>Bem-vindo ao portal do aluno</h2>
+      </header>
+      
+      <Card title="Mural de Avisos">
+        <ul>
+          <li>Inscrição para o projeto de extensão</li>
+          <li>Eleição para representante de turma</li>
+        </ul>
+      </Card>
 
-      <ListCard title="Calendário Acadêmico" items={calendario} />
+      <Card title="Calendário Acadêmico">
+        <ul>
+          <li>23/02 - Início do período letivo 2026-1</li>
+          <li>25/04 - Prazo final para aplicação da P1</li>
+          <li>23/06 - Prazo final para aplicação da P2</li>
+          <li>04/07 - Fim do período letivo 2026-1</li>
+        </ul>
+      </Card>
 
-      <ListCard title="Minhas Disciplinas" items={disciplinas} />
+      <Card title="Minhas Disciplinas">
+        <ul>
+          <li>BI e Data Warehousing</li>
+          <li>Construção de Frontend</li>
+          <li>Manutenção de Software e Devops</li>
+        </ul>
+      </Card>
     </>
-  );
+  )
 }
 
-export default Dashboard;
+export default Dashboard
