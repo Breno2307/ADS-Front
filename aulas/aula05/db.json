@@ -4,13 +4,13 @@
       "nome": "banana",
       "preço": "2",
       "unidade": "kg",
-      "id": "66ZSJ5pOeFU"
+      "id": "_dr8wtDWsVU"
     },
     {
-      "nome": "banana",
-      "preço": "2",
-      "unidade": "kg",
-      "id": "_dr8wtDWsVU"
+      "id": "FhqfZxSqXO8",
+      "nome": "laranja",
+      "preco": "11.00",
+      "unidade": "kg"
     }
   ],
   "clientes": [],
