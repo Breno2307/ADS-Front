@@ -2,25 +2,41 @@ import { createContext, useState } from "react";
 
 const AuthContext = createContext();
 
-// Provedor do contexto
 function AuthProvider({ children }) {
-  const [autenticado, setAutenticado] = useState(false);
-  const [usuario, setUsuario] = useState(null);
+  const [usuario, setUsuario] = useState(() => {
+    const usuarioSalvo = localStorage.getItem("usuario");
+    return usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+  });
+
+  const [autenticado, setAutenticado] = useState(() => {
+    return localStorage.getItem("autenticado") === "true";
+  });
 
   const login = (dadosUsuario) => {
-    // Simulação de login - em produção, chamaria API
     setUsuario(dadosUsuario);
     setAutenticado(true);
+
+    localStorage.setItem("usuario", JSON.stringify(dadosUsuario));
+    localStorage.setItem("autenticado", "true");
   };
 
   const logout = () => {
-    // Limpa o estado de autenticação
     setUsuario(null);
     setAutenticado(false);
+
+    localStorage.removeItem("usuario");
+    localStorage.removeItem("autenticado");
   };
 
   return (
-    <AuthContext.Provider value={{ autenticado, usuario, login, logout }}>
+    <AuthContext.Provider
+      value={{
+        autenticado,
+        usuario,
+        login,
+        logout,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
