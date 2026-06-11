@@ -1,48 +1,30 @@
 import './Sidebar.css'
-
-import Menu from './Menu'
+import { NavLink } from 'react-router-dom'
+import { useAuth } from '../contexts/useAuth'
 
 function Sidebar() {
-  const menuItems = [
-    {
-      label: 'Dashboard',
-      link: '/',
-    },
+  const { logout } = useAuth()
 
-    {
-      label: 'Notas',
-      link: '/notas',
-    },
-
-    {
-      label: 'Faltas',
-      link: '/faltas',
-    },
-
-    {
-      label: 'Boletos',
-      link: '/boletos',
-    },
-
-    {
-      label: 'Requerimentos',
-      link: '/requerimentos',
-    },
-  ]
+  const handleLogout = () => {
+    logout()
+  }
 
   return (
     <aside className="sidebar">
       <header className="sidebar-header">
-        <img
-          src="/learn.svg"
-          alt="Logo"
-          className="sidebar-logo"
-        />
-
+        <img src="/learn.svg" alt="Logo" className="sidebar-logo" />
         <h1>Aluno Online</h1>
       </header>
-
-      <Menu items={menuItems} />
+      <nav className="sidebar-nav">
+        <ul>
+          <li><NavLink to="/">Dashboard</NavLink></li>
+          <li><NavLink to="/notas">Notas</NavLink></li>
+          <li><NavLink to="/faltas">Faltas</NavLink></li>
+          <li><NavLink to="/boletos">Boletos</NavLink></li>
+          <li><NavLink to="/requerimentos">Requerimentos</NavLink></li>
+          <li><a href="#" onClick={handleLogout}>Sair</a></li>
+        </ul>
+      </nav>
     </aside>
   )
 }

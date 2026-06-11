@@ -1,0 +1,60 @@
+{
+  "requerimentos": [
+    {
+      "id": "1",
+      "tipo": "Revisão de Menção",
+      "descricao": "Solicito revisão da menção final.",
+      "data": "2026-05-26"
+    },
+    {
+      "tipo": "Mudança de Turno",
+      "descricao": "fvkjbvdfçsavkç",
+      "data": "08/06/2026",
+      "situacao": "Em analise",
+      "id": "zZJmkBLqQMQ"
+    },
+    {
+      "tipo": "Renovação de Matrícula",
+      "descricao": "1234567890",
+      "data": "26/09/2025",
+      "situacao": "Em analise",
+      "id": "Dxrk4CyrF_4"
+    },
+    {
+      "tipo": "Dispensa de Disciplina",
+      "descricao": "22222222222222222222222",
+      "data": "08/06/2026",
+      "situacao": "Em analise",
+      "id": "RKNnLWXrH1k"
+    },
+    {
+      "tipo": "Trancamento de Matrícula",
+      "descricao": "abobrinha aaaa",
+      "data": "09/06/2026",
+      "situacao": "Em analise",
+      "id": "0V8eocMV3wE"
+    },
+    {
+      "tipo": "Trancamento de Matrícula",
+      "descricao": "1234567890",
+      "data": "10/06/2026",
+      "situacao": "Em analise",
+      "id": "Db-07Q6NpuY"
+    },
+    {
+      "tipo": "Renovação de Matrícula",
+      "descricao": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "data": "10/06/2026",
+      "situacao": "Em analise",
+      "id": "Rib1Vi9Aka4"
+    },
+    {
+      "tipo": "Dispensa de Disciplina",
+      "descricao": "bla bla bla bal bla bla",
+      "data": "10/06/2026",
+      "situacao": "Em analise",
+      "id": "yR-HnwDjKqE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

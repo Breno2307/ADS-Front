@@ -1,46 +1,15 @@
-import { NavLink, useNavigate } from 'react-router'
-
 import './Menu.css'
 
-import useAuth from '../hooks/useAuth'
-
-function Menu({ items }) {
-  const navigate = useNavigate()
-
-  const { logout } = useAuth()
-
-  function sair() {
-    logout()
-
-    navigate('/login')
-  }
-
+function Menu() {
   return (
     <nav className="menu">
       <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            <NavLink
-              to={item.link}
-              className={({ isActive }) =>
-                isActive
-                  ? 'menu-link active'
-                  : 'menu-link'
-              }
-            >
-              {item.label}
-            </NavLink>
-          </li>
-        ))}
-
-        <li>
-          <button
-            onClick={sair}
-            className="menu-logout"
-          >
-            Sair
-          </button>
-        </li>
+        <li><a href="/">Dashboard</a></li>
+        <li><a href="/notas">Notas</a></li>
+        <li><a href="/faltas">Faltas</a></li>
+        <li><a href="/boletos">Boletos</a></li>
+        <li><a href="/requerimentos">Requerimentos</a></li>
+        <li><a href="/login">Sair</a></li>
       </ul>
     </nav>
   )
