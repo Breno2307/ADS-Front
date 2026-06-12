@@ -1,10 +1,11 @@
 {
   "produtos": [
     {
+      "id": "_dr8wtDWsVU",
       "nome": "banana",
       "preço": "2",
       "unidade": "kg",
-      "id": "_dr8wtDWsVU"
+      "preco": "132123132.00"
     },
     {
       "id": "FhqfZxSqXO8",
@@ -16,5 +17,12 @@
   "clientes": [],
   "Fornecedores": [],
   "pedidos": [],
+  "usuarios": [
+    {
+      "email": "breno@gmail.com",
+      "senha": "123456",
+      "id": "abcd1234"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }
