@@ -1,30 +1,54 @@
-const BASE_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000'
-const REQUERIMENTOS_URL = `${BASE_URL}/requerimentos`
+const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:3000";
 
-async function listarRequerimentos() {
-  const resposta = await fetch(REQUERIMENTOS_URL)
+const REQUERIMENTOS_URL = `${BASE_URL}/requerimentos`;
 
-  if (!resposta.ok) {
-    throw new Error('Nao foi possivel carregar os requerimentos.')
+function obterToken() {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    localStorage.clear();
+
+    throw new Error("401");
   }
 
-  return resposta.json()
+  return token;
+}
+
+async function listarRequerimentos() {
+  const token = obterToken();
+
+  const resposta = await fetch(REQUERIMENTOS_URL, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!resposta.ok) {
+    throw new Error("Erro ao carregar requerimentos");
+  }
+
+  return resposta.json();
 }
 
 async function cadastrarRequerimento(requerimento) {
+  const token = obterToken();
+
   const resposta = await fetch(REQUERIMENTOS_URL, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
+
+      Authorization: `Bearer ${token}`,
     },
+
     body: JSON.stringify(requerimento),
-  })
+  });
 
   if (!resposta.ok) {
-    throw new Error('Nao foi possivel cadastrar o requerimento.')
+    throw new Error("Erro ao cadastrar requerimento");
   }
 
-  return resposta.json()
+  return resposta.json();
 }
 
-export { listarRequerimentos, cadastrarRequerimento }
+export { listarRequerimentos, cadastrarRequerimento };

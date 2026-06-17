@@ -1,28 +1,42 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/useAuth";
+import { autenticar } from "../services/authService";
 import "./Login.css";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulação de login - em produção, chamaria API
-    login({ email, nome: "Cauã Mata" });
-    navigate("/");
+
+    setErro("");
+
+    try {
+      const resposta = await autenticar(email, senha);
+
+      login(resposta.usuario, resposta.token);
+
+      navigate("/");
+    } catch (error) {
+      setErro(error.message);
+    }
   };
 
   return (
     <div className="login-container">
       <div className="login-card">
         <h1>Login</h1>
+
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="email">Email</label>
+
             <input
               type="email"
               id="email"
@@ -31,8 +45,10 @@ function Login() {
               required
             />
           </div>
+
           <div className="form-group">
             <label htmlFor="senha">Senha</label>
+
             <input
               type="password"
               id="senha"
@@ -41,6 +57,18 @@ function Login() {
               required
             />
           </div>
+
+          {erro && (
+            <p
+              style={{
+                color: "red",
+                marginBottom: "10px",
+              }}
+            >
+              {erro}
+            </p>
+          )}
+
           <button type="submit">Entrar</button>
         </form>
       </div>

@@ -3,36 +3,51 @@ import { createContext, useState } from "react";
 const AuthContext = createContext();
 
 function AuthProvider({ children }) {
+
   const [usuario, setUsuario] = useState(() => {
     const usuarioSalvo = localStorage.getItem("usuario");
-    return usuarioSalvo ? JSON.parse(usuarioSalvo) : null;
+    return usuarioSalvo
+      ? JSON.parse(usuarioSalvo)
+      : null;
   });
 
-  const [autenticado, setAutenticado] = useState(() => {
-    return localStorage.getItem("autenticado") === "true";
+  const [token, setToken] = useState(() => {
+    return localStorage.getItem("token");
   });
 
-  const login = (dadosUsuario) => {
+  const autenticado = !!token;
+
+  const login = (dadosUsuario, tokenRecebido) => {
+
     setUsuario(dadosUsuario);
-    setAutenticado(true);
+    setToken(tokenRecebido);
 
-    localStorage.setItem("usuario", JSON.stringify(dadosUsuario));
-    localStorage.setItem("autenticado", "true");
+    localStorage.setItem(
+      "usuario",
+      JSON.stringify(dadosUsuario)
+    );
+
+    localStorage.setItem(
+      "token",
+      tokenRecebido
+    );
   };
 
   const logout = () => {
+
     setUsuario(null);
-    setAutenticado(false);
+    setToken(null);
 
     localStorage.removeItem("usuario");
-    localStorage.removeItem("autenticado");
+    localStorage.removeItem("token");
   };
 
   return (
     <AuthContext.Provider
       value={{
-        autenticado,
         usuario,
+        token,
+        autenticado,
         login,
         logout,
       }}
@@ -42,4 +57,4 @@ function AuthProvider({ children }) {
   );
 }
 
-export { AuthProvider, AuthContext };
+export { AuthContext, AuthProvider };

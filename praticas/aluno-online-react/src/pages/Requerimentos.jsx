@@ -1,49 +1,57 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import Tabela from '../components/Tabela'
-import { listarRequerimentos } from '../services/requerimentoService'
-import './Requerimentos.css'
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Tabela from "../components/Tabela";
+import { listarRequerimentos } from "../services/requerimentoService";
+import "./Requerimentos.css";
+import { useAuth } from "../contexts/useAuth";
+import { useNavigate } from "react-router-dom";
 
 function Requerimentos() {
-  const [requerimentos, setRequerimentos] = useState([])
-  const [carregando, setCarregando] = useState(true)
-  const [erro, setErro] = useState('')
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+  const [requerimentos, setRequerimentos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState("");
 
   useEffect(() => {
-    let paginaAtiva = true
+    let paginaAtiva = true;
 
     async function carregarRequerimentos() {
       try {
-        const dados = await listarRequerimentos()
+        const dados = await listarRequerimentos();
 
         if (paginaAtiva) {
-          setRequerimentos(dados)
-          setErro('')
+          setRequerimentos(dados);
+          setErro("");
         }
       } catch (error) {
-        if (paginaAtiva) {
-          setErro(error.message)
+        if (error.message === "401") {
+          logout();
+          navigate("/login");
+          return;
         }
+
+        setErro(error.message);
       } finally {
         if (paginaAtiva) {
-          setCarregando(false)
+          setCarregando(false);
         }
       }
     }
 
-    carregarRequerimentos()
+    carregarRequerimentos();
 
     return () => {
-      paginaAtiva = false
-    }
-  }, [])
+      paginaAtiva = false;
+    };
+  }, []);
 
-  const colunas = ['Tipo de Requerimento', 'Data de Solicitacao', 'Situacao']
+  const colunas = ["Tipo de Requerimento", "Data de Solicitacao", "Situacao"];
   const dadosTabela = requerimentos.map(({ tipo, data, situacao }) => ({
     tipo,
     data,
     situacao,
-  }))
+  }));
 
   return (
     <>
@@ -66,7 +74,7 @@ function Requerimentos() {
         <Tabela colunas={colunas} dados={dadosTabela} />
       )}
     </>
-  )
+  );
 }
 
-export default Requerimentos
+export default Requerimentos;
